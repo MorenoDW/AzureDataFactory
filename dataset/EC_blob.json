@@ -1,0 +1,23 @@
+{
+	"name": "EC_blob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkedServiceTest",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "E-commerce.zip",
+				"container": "e-commerce-blob"
+			},
+			"columnDelimiter": "\t",
+			"compressionCodec": "ZipDeflate",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
