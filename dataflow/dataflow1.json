@@ -1,0 +1,38 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "CSV_sink_primaCopia",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dataFlowSink",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "FilterContinent"
+				},
+				{
+					"name": "Select1"
+				},
+				{
+					"name": "DerivedColumn1"
+				}
+			],
+			"script": "source(output(\n\t\tcountry as string,\n\t\tcontinent as string,\n\t\tpopulation as string,\n\t\tindicator as string,\n\t\tdaily_count as string,\n\t\tdate_country as string,\n\t\trate_14_day as string,\n\t\tsource as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource1 filter(continent == 'Europe') ~> FilterContinent\nFilterContinent select(mapColumn(\n\t\tcountry,\n\t\tcontinent,\n\t\tpopulation,\n\t\tdaily_count,\n\t\tdate_country,\n\t\trate_14_day\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 derive(date_country = iifNull(toDate(date_country,\r\n'dd/MM/yyyy'), toDate(date_country,\r\n'yyyy-mm-DD'))) ~> DerivedColumn1\nDerivedColumn1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tcountry as string,\n\t\tcontinent as string,\n\t\tpopulation as string,\n\t\tdaily_count as string,\n\t\tdate_country as string,\n\t\trate_14_day as string\n\t),\n\tpartitionFileNames:['cases_death.csv'],\n\ttruncate: true,\n\tumask: 0022,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\tmapColumn(\n\t\tcountry,\n\t\tcontinent,\n\t\tpopulation,\n\t\tdaily_count,\n\t\tdate_country,\n\t\trate_14_day\n\t),\n\tpartitionBy('hash', 1)) ~> sink1"
+		}
+	}
+}

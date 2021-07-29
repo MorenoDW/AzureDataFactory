@@ -1,0 +1,9 @@
+{
+	"name": "test-data-factory22",
+	"location": "westeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "43ab59a0-c594-4ff7-9ce9-3be5bb4e4107",
+		"tenantId": "c7456b31-a220-47f5-be52-473828670aa1"
+	}
+}

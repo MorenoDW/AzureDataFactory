@@ -1,0 +1,58 @@
+{
+	"name": "DataSet_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkedServiceTest",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "cases_deaths.zip",
+				"container": "blobtest"
+			},
+			"columnDelimiter": "\t",
+			"compressionCodec": "ZipDeflate",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "country",
+				"type": "String"
+			},
+			{
+				"name": "continent",
+				"type": "String"
+			},
+			{
+				"name": "population",
+				"type": "String"
+			},
+			{
+				"name": "indicator",
+				"type": "String"
+			},
+			{
+				"name": "daily_count",
+				"type": "String"
+			},
+			{
+				"name": "date_country",
+				"type": "String"
+			},
+			{
+				"name": "rate_14_day",
+				"type": "String"
+			},
+			{
+				"name": "source",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

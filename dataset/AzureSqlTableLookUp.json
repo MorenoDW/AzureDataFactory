@@ -1,0 +1,44 @@
+{
+	"name": "AzureSqlTableLookUp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseLookUp",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "country",
+				"type": "varchar"
+			},
+			{
+				"name": "country_code_2_digit",
+				"type": "varchar"
+			},
+			{
+				"name": "country_code_3_digit",
+				"type": "varchar"
+			},
+			{
+				"name": "continent",
+				"type": "varchar"
+			},
+			{
+				"name": "population",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "testAccademy",
+			"table": "LookUp"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

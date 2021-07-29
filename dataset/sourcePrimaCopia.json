@@ -1,0 +1,29 @@
+{
+	"name": "sourcePrimaCopia",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkedServiceTest",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "cases_deaths.zip",
+				"container": "blobtest"
+			},
+			"columnDelimiter": "\t",
+			"compressionCodec": "ZipDeflate",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,50 @@
+{
+	"name": "AzureSqlDataBase",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "country",
+				"type": "varchar"
+			},
+			{
+				"name": "continent",
+				"type": "varchar"
+			},
+			{
+				"name": "population",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "daily_count",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "date_country",
+				"type": "date"
+			},
+			{
+				"name": "rate_14_day",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "testAccademy",
+			"table": "SinkCaseRate"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
