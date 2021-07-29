@@ -1035,19 +1035,21 @@
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
+									"type": "DelimitedTextReadSettings",
+									"compressionProperties": {
+										"type": "ZipDeflateReadSettings"
+									}
 								}
 							},
 							"sink": {
 								"type": "DelimitedTextSink",
 								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings",
-									"copyBehavior": "FlattenHierarchy"
+									"type": "AzureBlobStorageWriteSettings"
 								},
 								"formatSettings": {
 									"type": "DelimitedTextWriteSettings",
 									"quoteAllText": true,
-									"fileExtension": ".txt"
+									"fileExtension": ".csv"
 								}
 							},
 							"enableStaging": false,
@@ -1069,7 +1071,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "EC_blob",
+								"referenceName": "EC_Blob_decompresso",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -1082,7 +1084,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/EC_blob')]"
+				"[concat(variables('factoryId'), '/datasets/EC_blob')]",
+				"[concat(variables('factoryId'), '/datasets/EC_Blob_decompresso')]"
 			]
 		},
 		{
@@ -1099,9 +1102,11 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
+						"fileName": "E-commerce.zip",
 						"container": "e-commerce-blob"
 					},
-					"columnDelimiter": ",",
+					"columnDelimiter": "\t",
+					"compressionCodec": "ZipDeflate",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"quoteChar": "\""
@@ -1128,6 +1133,33 @@
 						"type": "AzureBlobStorageLocation",
 						"fileName": "*csv",
 						"container": "e-commerce-lake"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LinkedServiceTest')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EC_Blob_decompresso')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LinkedServiceTest",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "e-commerce-blob"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
