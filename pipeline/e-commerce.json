@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Validate if csv exist",
+				"name": "Validate if zip exists",
 				"type": "Validation",
 				"dependsOn": [],
 				"userProperties": [],
@@ -21,7 +21,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Validate if csv exist",
+						"activity": "Validate if zip exists",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -45,19 +45,21 @@
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "DelimitedTextReadSettings"
+							"type": "DelimitedTextReadSettings",
+							"compressionProperties": {
+								"type": "ZipDeflateReadSettings"
+							}
 						}
 					},
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings",
-							"copyBehavior": "FlattenHierarchy"
+							"type": "AzureBlobStorageWriteSettings"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
-							"fileExtension": ".txt"
+							"fileExtension": ".csv"
 						}
 					},
 					"enableStaging": false,
@@ -78,7 +80,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "EC_blob",
+						"referenceName": "EC_Blob_decompresso",
 						"type": "DatasetReference"
 					}
 				]
