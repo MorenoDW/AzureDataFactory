@@ -426,6 +426,9 @@
 				"defaultValue": "Italy"
 			}
 		},
+		"folder": {
+			"name": "ETL_case_death"
+		},
 		"annotations": [],
 		"lastPublishTime": "2021-07-29T12:55:51Z"
 	},
