@@ -10,12 +10,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "E-commerce.zip",
 				"container": "e-commerce-blob"
 			},
-			"columnDelimiter": "\t",
-			"compressionCodec": "ZipDeflate",
+			"columnDelimiter": ",",
 			"escapeChar": "\\",
+			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": []

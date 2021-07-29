@@ -2,15 +2,16 @@
 	"name": "EC_Lake",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureDataLakeStorage1",
+			"referenceName": "LinkedServiceTest",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileSystem": "e-commerce-lake"
+				"type": "AzureBlobStorageLocation",
+				"fileName": "*csv",
+				"container": "e-commerce-lake"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
