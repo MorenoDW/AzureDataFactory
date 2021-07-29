@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Validate if zip exists",
+				"name": "Validate if csv exist",
 				"type": "Validation",
 				"dependsOn": [],
 				"userProperties": [],
@@ -21,7 +21,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Validate if zip exists",
+						"activity": "Validate if csv exist",
 						"dependencyConditions": [
 							"Succeeded"
 						]
